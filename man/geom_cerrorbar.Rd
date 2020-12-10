@@ -19,5 +19,5 @@ geom_cerrorbar(..., bar_width = 0.6, position = position_dodge(width =
 \item{size}{see ggplot2::geom_errorbar}
 }
 \description{
-This calls ggplot2:geom_errorbar with some shortcuts for use with the other codyverse functions.
+This calls ggplot2::geom_errorbar with some shortcuts for use with the other codyverse functions.
 }

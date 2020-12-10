@@ -92,7 +92,7 @@ geom_ccol <- function(..., bar_width = 0.6, position = position_dodge(), color =
 
 #' Cody's preferred geom_errorbar
 #'
-#' This calls ggplot2:geom_errorbar with some shortcuts for use with the other codyverse functions.
+#' This calls ggplot2::geom_errorbar with some shortcuts for use with the other codyverse functions.
 #'
 #' @param ...
 #' @param bar_width Width of the geom that cerrorbar will be added to.
@@ -107,6 +107,20 @@ geom_ccol <- function(..., bar_width = 0.6, position = position_dodge(), color =
 #' @examples
 geom_cerrorbar <- function(..., bar_width = 0.6, position = position_dodge(width = bar_width), color = "black", width = bar_width * 0.5, size = 0.75) {
   geom_errorbar(..., position = position, color = color, width = width, size = size)
+}
+
+#' Pretty log 10
+#'
+#' Calls ggplot2::scale_y_log10 with labels for "pretty" exponents. Recommend to also add annotation_logticks(sides = "l")
+#'
+#' @param ... Any arguments to pass to ggplot2::scale_y_log10
+#'
+#' @return
+#' @export
+#'
+#' @examples
+scale_y_prettylog10 <- function(...) {
+  scale_y_log10(..., labels = scales::trans_format("log10", scales::math_format(10^.x)))
 }
 
 #' Mean and SEM Calculator
@@ -124,7 +138,7 @@ mean_sem <- function (x)
   x <- stats::na.omit(x)
   mean <- mean(x)
   sem <- sd(x)/sqrt(length(x))
-  data.frame(list(y = mean, ymin = mean, ymax = mean +
+  data.frame(list(y = mean, ymin = mean - sem, ymax = mean +
                     sem))
 }
 
